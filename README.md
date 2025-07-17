@@ -5,7 +5,7 @@ The code for the uncertainty estimation module in PLUE-SLAM, a point–line RGB-
 
 Currently, the uncertainty-related code in the front-end tracking is already available, including the initialization, feature and pose uncertainty estimation during tracking, and the uncertainty initialization for newly created features with CI-filter fusion in the tracking phase. We will open-source the remaining code after the paper is accepted.
 
-This code must be integrated in [ORB-SLAM2](https://github.com/raulmur/ORB_SLAM2) and also implement line feature association and optimization. You can refer to [PL-VINS](https://github.com/cnqiangfu/PL-VINS)  and [G2O documentation](https://github.com/RainerKuemmerle/g2o).
+This code must be integrated in [ORB-SLAM2](https://github.com/raulmur/ORB_SLAM2) and also need to implement the line feature association and optimization. You can refer to [PL-VINS](https://github.com/cnqiangfu/PL-VINS)  and [G2O documentation](https://github.com/RainerKuemmerle/g2o).
 
 
 
