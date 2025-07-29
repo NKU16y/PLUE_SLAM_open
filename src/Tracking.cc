@@ -320,11 +320,11 @@ namespace ORB_SLAM2
                     temb = eit_pei_Xc * pXc_pose_initial;
 
                     const float& b1 = temb.at<float>(0,0);
-                    const float& b2 = temb.at<float>(0,0);
-                    const float& b3 = temb.at<float>(0,0);
-                    const float& b4 = temb.at<float>(0,0);
-                    const float& b5 = temb.at<float>(0,0);
-                    const float& b6 = temb.at<float>(0,0);
+                    const float& b2 = temb.at<float>(0,1);
+                    const float& b3 = temb.at<float>(0,2);
+                    const float& b4 = temb.at<float>(0,3);
+                    const float& b5 = temb.at<float>(0,4);
+                    const float& b6 = temb.at<float>(0,5);
 
                     cv::Mat H422_i2_1 = cv::Mat::zeros(6,6,CV_32F);
                     H422_i2_1.at<float>(1,2) = 0.5;
