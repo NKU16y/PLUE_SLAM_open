@@ -521,7 +521,7 @@ namespace ORB_SLAM2
         Rcw = mCurrentFrame.mTcw.rowRange(0,3).colRange(0,3);
         cv::Mat tcw(3,1,CV_32F);
         tcw = mCurrentFrame.mTcw.rowRange(0,3).col(3);
-        cv::Mat dominv(6,6,CV_32F), dom(6,6,CV_32F);
+        cv::Mat dominv = cv::Mat::zeros(6,6,CV_32F), dom = cv::Mat::zeros(6,6,CV_32F);
         dominv = (H4+H7);
         dom = dominv.inv();
         cv::Mat tem_pose_uncertainty_point(6,6,CV_32F);
@@ -610,7 +610,7 @@ namespace ORB_SLAM2
         cv::Mat tcw(3,1,CV_32F);
         tcw = mCurrentFrame.mTcw.rowRange(0,3).col(3);
         cv::Mat Kl = (cv::Mat_<float>(3,3) << fy,0,0,0,fx,0,-fy*cx,-fx*cy,fx*fy);
-        cv::Mat dominv(6,6,CV_32F), dom(6,6,CV_32F);
+        cv::Mat dominv = cv::Mat::zeros(6,6,CV_32F), dom = cv::Mat::zeros(6,6,CV_32F);
         dominv = (H4+H7);
         dom = dominv.inv();
         cv::Mat tem_pose_uncertainty_line(6,6,CV_32F);
