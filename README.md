@@ -1,7 +1,7 @@
 ## PLUE-SLAM: An RGB-D SLAM System Integrating Uncertainty Estimation of Point and Line Features
 ## 1. Introduction
 <div style="text-align: justify;">
-The code for the uncertainty estimation module in PLUE-SLAM, a point–line RGB-D SLAM method built on the ORB-SLAM2 framework.
+The code for the uncertainty estimation module in PLUE-SLAM, a point–line RGB-D SLAM system.
 
 
 Currently, the uncertainty-related code in the front-end tracking is already available, including the initialization, feature and pose uncertainty estimation during tracking, and the uncertainty initialization for newly created features with CI-filter fusion in the tracking. We will open-source the remaining code after the paper is accepted.
