@@ -28,8 +28,7 @@ void LocalMapping::CreateNewMapPointsUncertainty(const vector<ORB_SLAM2::KeyFram
     const float ratioFactor = 1.5f*mpCurrentKeyFrame->mfScaleFactor;
 
     int nnew=0;
-    // 算位姿的J矩阵
-    Eigen::Matrix3d Rcw_eigen = Converter::toMatrix3d(Rcw1);    //当前帧旋转矩阵3*3
+    Eigen::Matrix3d Rcw_eigen = Converter::toMatrix3d(Rcw1);   
     Eigen::Vector3d tcw_eigen(tcw1.at<float>(0,0), tcw1.at<float>(1,0),tcw1.at<float>(2,0));
 
 
@@ -54,7 +53,6 @@ void LocalMapping::CreateNewMapPointsUncertainty(const vector<ORB_SLAM2::KeyFram
     cv::Mat varianceKF1 = mpCurrentKeyFrame->GetDepthVarMat();
     cv::Mat covPose1 = mpCurrentKeyFrame->GetCovpose();
 
-    // 得到伴随矩阵
     cv::Mat Twc1 = Tcw1.inv();
     cv::Mat AdTwc1 = cv::Mat::zeros(6,6,CV_32F);
     cv::Mat Rwc1 = cv::Mat::zeros(3,3,CV_32F);
@@ -132,7 +130,6 @@ void LocalMapping::CreateNewMapPointsUncertainty(const vector<ORB_SLAM2::KeyFram
         const float &invfy2 = pKF2->invfy;
         cv::Mat covPose2 = pKF2->GetCovpose();
        
-        // 得到伴随矩阵
         cv::Mat Twc2 = Tcw2.inv();
         cv::Mat AdTwc2 = cv::Mat::zeros(6,6,CV_32F);
         cv::Mat Rwc2 = cv::Mat::zeros(3,3,CV_32F);
@@ -370,7 +367,7 @@ void LocalMapping::CreateNewMapPointsUncertainty(const vector<ORB_SLAM2::KeyFram
                 pMP->ifFused = false;
             }
 
-            else //深度测量
+            else // depth
             {
                 pMP->iftriangulation = false;
                 pMP->ifFused = true;
@@ -524,8 +521,7 @@ void LocalMapping::CreateNewMapLinesUncertainty(const vector<KeyFrame*> &vpNeigh
     int nnewLines=0;
     size_t nlineTotMatches = 0;
 
-    // 算位姿的J矩阵
-    Eigen::Matrix3d Rcw_eigen = Converter::toMatrix3d(Rcw1);    //当前帧旋转矩阵3*3
+    Eigen::Matrix3d Rcw_eigen = Converter::toMatrix3d(Rcw1);   
     Eigen::Vector3d tcw_eigen(tcw1.at<float>(0,0), tcw1.at<float>(1,0),tcw1.at<float>(2,0));
 
 
@@ -550,7 +546,7 @@ void LocalMapping::CreateNewMapLinesUncertainty(const vector<KeyFrame*> &vpNeigh
     cv::Mat covXc = K1inv * covU * K1inv.t();
     cv::Mat varianceKF1 = mpCurrentKeyFrame->GetDepthVarMat();
     cv::Mat covPose1 = mpCurrentKeyFrame->GetCovpose();
-    // 得到伴随矩阵
+
     cv::Mat Twc1 = Tcw1.inv();
     cv::Mat AdTwc1 = cv::Mat::zeros(6,6,CV_32F);
     cv::Mat Rwc1 = cv::Mat::zeros(3,3,CV_32F);
@@ -639,7 +635,7 @@ void LocalMapping::CreateNewMapLinesUncertainty(const vector<KeyFrame*> &vpNeigh
         const float &invfy2 = pKF2->invfy;
         cv::Mat covPose2 = pKF2->GetCovpose();
 
-        // 得到伴随矩阵
+
         cv::Mat Twc2 = Tcw2.inv();
         cv::Mat AdTwc2 = cv::Mat::zeros(6,6,CV_32F);
         cv::Mat Rwc2 = cv::Mat::zeros(3,3,CV_32F);
@@ -691,7 +687,7 @@ void LocalMapping::CreateNewMapLinesUncertainty(const vector<KeyFrame*> &vpNeigh
             const bool bStereo2 = (pKF2->mvuRightLineStart[idx2]>=0) && (pKF2->mvuRightLineEnd[idx2]>=0);
             
 
-            // 直线参数
+            // line 
             const Eigen::Vector3d p1(kl1.startPointX, kl1.startPointY, 1.0);
             const Eigen::Vector3d q1(kl1.endPointX,   kl1.endPointY,   1.0);
             const Eigen::Vector3d m1 = 0.5*(p1+q1);
@@ -919,7 +915,7 @@ void LocalMapping::CreateNewMapLinesUncertainty(const vector<KeyFrame*> &vpNeigh
 
             MapLine* pML = new MapLine(Plucker,x3DS,x3DE,mpCurrentKeyFrame,mpMap);
 
-            //线的不确定度
+            // line uncertainty
             cv::Mat covXwS = cv::Mat::zeros(3,3,CV_32F);
             cv::Mat covXwE = cv::Mat::zeros(3,3,CV_32F);
             cv::Mat pXc_U = cv::Mat::zeros(3,3,CV_32F);
@@ -1170,7 +1166,7 @@ void LocalMapping::CreateNewMapLinesUncertainty(const vector<KeyFrame*> &vpNeigh
                   }
                 }
             }
-            //不确定度从端点传递到Pluck
+            // Pluck uncertainty
             cv::Mat plinestartX = cv::Mat::zeros(6,3,CV_32F);
             cv::Mat endXw = cv::Mat::zeros(3,1,CV_32F);
             cv::Mat startXw = cv::Mat::zeros(3,1,CV_32F);
