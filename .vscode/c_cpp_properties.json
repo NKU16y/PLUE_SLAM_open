@@ -1,0 +1,19 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "${workspaceFolder}/**",
+                "/home/yu/workspaces/origin_others_ws/src/ORB_SLAM2/include",
+                "/home/yu/workspaces/origin_others_ws/src/ORB_SLAM2/",
+                "/usr/local/include/pangolin/display/device"
+            ],
+            "defines": [],
+            "compilerPath": "/usr/bin/gcc",
+            "cStandard": "c11",
+            "cppStandard": "gnu++14",
+            "intelliSenseMode": "linux-gcc-x64"
+        }
+    ],
+    "version": 4
+}
